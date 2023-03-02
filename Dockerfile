@@ -2,7 +2,7 @@ FROM quay.io/centos/centos:7
 
 MAINTAINER Erik Jacobs <erikmjacobs@gmail.com>
 
-ARG GOGS_VERSION="0.9.113"
+ARG GOGS_VERSION="0.12.11"
 
 LABEL name="Gogs - Go Git Service" \
       vendor="Gogs" \
@@ -20,22 +20,26 @@ ENV HOME=/var/lib/gogs
 COPY ./root /
 
 RUN curl -L -o /etc/yum.repos.d/gogs.repo https://dl.packager.io/srv/pkgr/gogs/pkgr/installer/el/7.repo && \
-    #rpm --import https://rpm.packager.io/key && \
     yum -y install epel-release && \
-    yum -y --setopt=tsflags=nodocs install gogs-${GOGS_VERSION} nss_wrapper gettext && \
-    yum -y clean all && \
-    mkdir -p /var/lib/gogs
+    yum -y --setopt=tsflags=nodocs install nss_wrapper gettext && \
+    yum -y clean all 
 
 RUN adduser gogs && \
     mkdir /opt/gogs && \
     mkdir /etc/gogs && \
-    mkdir /var/log/gogs
+    mkdir /var/log/gogs && \
+    mkdir /var/lib/gogs
 
 RUN /usr/bin/fix-permissions /var/lib/gogs && \
     /usr/bin/fix-permissions /home/gogs && \
     /usr/bin/fix-permissions /opt/gogs && \
     /usr/bin/fix-permissions /etc/gogs && \
     /usr/bin/fix-permissions /var/log/gogs
+
+RUN cd /tmp && curl -o gogs.tar.gz https://dl.gogs.io/${GOGS_VERSION}/gogs_${GOGS_VERSION}_linux_amd64.tar.gz && \
+    tar -vxf gogs.tar.gz && \
+    rm gogs.tar.gz && \
+    mv gogs /usr/bin/
 
 EXPOSE 3000
 USER 997
