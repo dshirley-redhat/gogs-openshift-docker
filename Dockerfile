@@ -25,10 +25,16 @@ RUN curl -L -o /etc/yum.repos.d/gogs.repo https://dl.packager.io/srv/pkgr/gogs/p
     yum -y clean all 
 
 RUN adduser gogs && \
-    mkdir /opt/gogs && \
     mkdir /etc/gogs && \
     mkdir /var/log/gogs && \
     mkdir /var/lib/gogs
+
+
+RUN cd /tmp && curl -o gogs.tar.gz https://dl.gogs.io/${GOGS_VERSION}/gogs_${GOGS_VERSION}_linux_amd64.tar.gz && \
+    tar -vxf gogs.tar.gz && \
+    rm gogs.tar.gz && \
+    mv gogs /opt/ && \
+    ln /opt/gogs/gogs /usr/bin/gogs
 
 RUN /usr/bin/fix-permissions /var/lib/gogs && \
     /usr/bin/fix-permissions /home/gogs && \
@@ -36,10 +42,6 @@ RUN /usr/bin/fix-permissions /var/lib/gogs && \
     /usr/bin/fix-permissions /etc/gogs && \
     /usr/bin/fix-permissions /var/log/gogs
 
-RUN cd /tmp && curl -o gogs.tar.gz https://dl.gogs.io/${GOGS_VERSION}/gogs_${GOGS_VERSION}_linux_amd64.tar.gz && \
-    tar -vxf gogs.tar.gz && \
-    rm gogs.tar.gz && \
-    mv gogs /usr/bin/
 
 EXPOSE 3000
 USER 997
