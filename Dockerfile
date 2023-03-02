@@ -1,4 +1,4 @@
-FROM centos:7
+FROM quay.io/centos/centos:7
 
 MAINTAINER Erik Jacobs <erikmjacobs@gmail.com>
 
