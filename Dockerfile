@@ -17,6 +17,7 @@ LABEL name="Gogs - Go Git Service" \
 
 ENV HOME=/var/lib/gogs
 
+
 COPY ./root /
 
 RUN curl -L -o /etc/yum.repos.d/gogs.repo https://dl.packager.io/srv/pkgr/gogs/pkgr/installer/el/7.repo && \
@@ -25,6 +26,7 @@ RUN curl -L -o /etc/yum.repos.d/gogs.repo https://dl.packager.io/srv/pkgr/gogs/p
     yum -y clean all 
 
 RUN adduser gogs && \
+    usermod -a -G root gogs && \
     mkdir /var/lib/gogs
 
 RUN cd /tmp && curl -o gogs.tar.gz https://dl.gogs.io/${GOGS_VERSION}/gogs_${GOGS_VERSION}_linux_amd64.tar.gz && \
