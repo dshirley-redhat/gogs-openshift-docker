@@ -21,7 +21,7 @@ COPY ./root /
 
 RUN curl -L -o /etc/yum.repos.d/gogs.repo https://dl.packager.io/srv/pkgr/gogs/pkgr/installer/el/7.repo && \
     yum -y install epel-release && \
-    yum -y --setopt=tsflags=nodocs install nss_wrapper gettext && \
+    yum -y --setopt=tsflags=nodocs install git nss_wrapper gettext && \
     yum -y clean all 
 
 RUN adduser gogs && \
