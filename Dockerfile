@@ -1,6 +1,4 @@
-FROM quay.io/centos/centos:7
-
-MAINTAINER Erik Jacobs <erikmjacobs@gmail.com>
+FROM quay.io/centos/centos:7d
 
 ARG GOGS_VERSION="0.12.11"
 
