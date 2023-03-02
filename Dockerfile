@@ -1,4 +1,4 @@
-FROM quay.io/centos/centos:7d
+FROM quay.io/centos/centos:7
 
 ARG GOGS_VERSION="0.12.11"
 
