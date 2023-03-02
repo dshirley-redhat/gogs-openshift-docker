@@ -24,7 +24,8 @@ RUN curl -L -o /etc/yum.repos.d/gogs.repo https://dl.packager.io/srv/pkgr/gogs/p
     yum -y --setopt=tsflags=nodocs install nss_wrapper gettext && \
     yum -y clean all 
 
-RUN adduser gogs 
+RUN adduser gogs && \
+    mkdir /var/lib/gogs
 
 RUN cd /tmp && curl -o gogs.tar.gz https://dl.gogs.io/${GOGS_VERSION}/gogs_${GOGS_VERSION}_linux_amd64.tar.gz && \
     tar -vxf gogs.tar.gz && \
@@ -32,6 +33,7 @@ RUN cd /tmp && curl -o gogs.tar.gz https://dl.gogs.io/${GOGS_VERSION}/gogs_${GOG
     mv gogs /opt/
 
 RUN /usr/bin/fix-permissions /home/gogs && \
+    /usr/bin/fix-permissions /var/lib/gogs && \
     /usr/bin/fix-permissions /opt/gogs 
 
 EXPOSE 3000
