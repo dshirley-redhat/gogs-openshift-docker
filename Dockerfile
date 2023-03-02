@@ -37,6 +37,6 @@ RUN /usr/bin/fix-permissions /home/gogs && \
     /usr/bin/fix-permissions /opt/gogs 
 
 EXPOSE 3000
-USER 997
+USER gogs
 
 CMD ["/usr/bin/rungogs"]
