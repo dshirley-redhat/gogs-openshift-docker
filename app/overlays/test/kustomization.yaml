@@ -1,0 +1,26 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+bases:
+  - namespace.yaml
+  - ../../base
+
+patches:
+- target:
+    kind: Route
+    name: gogs
+  patch: |-
+    - op: add
+      path: /spec
+      value:
+        name: "host"
+        value: "gogs-test.apps.dshirley1ipi.vmware.tamlab.rdu2.redhat.com"
+- target:
+    kind: DeploymentConfig
+    name: gogs
+  patch: |-
+    - op: add
+      path: /spec/triggers/1/imageChangeParams/from
+      value:
+        name: "namespace"
+        value: "gogs-test"
