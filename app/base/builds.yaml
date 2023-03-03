@@ -15,6 +15,7 @@ spec:
   source:
     git:
       uri: https://github.com/dshirley-redhat/gogs-openshift-docker.git
+      ref: main
     type: Git
   strategy:
     dockerStrategy:
