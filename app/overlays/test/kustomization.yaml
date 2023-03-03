@@ -10,17 +10,13 @@ patches:
     kind: Route
     name: gogs
   patch: |-
-    - op: add
-      path: /spec
-      value:
-        name: "host"
-        value: "gogs-test.apps.dshirley1ipi.vmware.tamlab.rdu2.redhat.com"
+    - op: replace
+      path: /spec/host
+      value: "gogs-test.apps.dshirley1ipi.vmware.tamlab.rdu2.redhat.com"
 - target:
     kind: DeploymentConfig
     name: gogs
   patch: |-
-    - op: add
-      path: /spec/triggers/1/imageChangeParams/from
-      value:
-        name: "namespace"
-        value: "gogs-test"
+    - op: replace
+      path: /spec/triggers/1/imageChangeParams/from/namespace
+      value: "gogs-test"
