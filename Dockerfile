@@ -30,11 +30,10 @@ RUN adduser gogs && \
 RUN cd /tmp && curl -o gogs.tar.gz https://dl.gogs.io/${GOGS_VERSION}/gogs_${GOGS_VERSION}_linux_amd64.tar.gz && \
     tar -vxf gogs.tar.gz && \
     rm gogs.tar.gz && \
-    mv gogs /opt/
+    mv gogs/* /home/gogs/
 
 RUN /usr/bin/fix-permissions /home/gogs && \
-    /usr/bin/fix-permissions /var/lib/gogs && \
-    /usr/bin/fix-permissions /opt/gogs 
+    /usr/bin/fix-permissions /var/lib/gogs
 
 EXPOSE 3000
 USER gogs
