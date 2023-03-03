@@ -17,6 +17,7 @@ data:
     NAME     = gogsdb
     USER     = user2WH
     PASSWD   = SXjGNJvQ62NSAi3d
+    SSL_MODE = disable
 
     [repository]
     ROOT = /opt/gogs/data/repositories
@@ -33,3 +34,9 @@ data:
 
     [webhook]
     SKIP_TLS_VERIFY = true
+   
+    [admin]
+    ADMIN_USER_CREATE = true
+    ADMIN_USER_NAME = gogsadmin
+    ADMIN_USER_EMAIL = gogsadmin@fabric8.local
+    ADMIN_USER_PASSWORD = admin123
