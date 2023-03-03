@@ -72,7 +72,7 @@ spec:
         volumeMounts:
         - mountPath: /opt/gogs/data
           name: gogs-data
-        - mountPath: /opt/gogs/custom/conf
+        - mountPath: /home/gogs/custom/conf
           name: gogs-config
       dnsPolicy: ClusterFirst
       restartPolicy: Always
