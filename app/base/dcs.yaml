@@ -70,8 +70,6 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
-        - mountPath: /opt/gogs/data
-          name: gogs-data
         - mountPath: /home/gogs/custom/conf
           name: gogs-config
       dnsPolicy: ClusterFirst
@@ -81,9 +79,6 @@ spec:
       serviceAccountName: gogs
       terminationGracePeriodSeconds: 30
       volumes:
-      - name: gogs-data
-        persistentVolumeClaim:
-          claimName: gogs-data
       - configMap:
           defaultMode: 420
           items:
