@@ -13,8 +13,7 @@ LABEL name="Gogs - Go Git Service" \
       version="${GOGS_VERSION}" \
       release="1"
 
-ENV HOME=/var/lib/gogs
-
+ENV HOME=/home/gogs
 
 COPY ./root /
 
