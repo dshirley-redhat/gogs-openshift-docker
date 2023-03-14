@@ -23,7 +23,7 @@ data:
     ROOT = /opt/gogs/data/repositories
 
     [server]
-    ROOT_URL=http://gogs.apps.dshirley1ipi.vmware.tamlab.rdu2.redhat.com
+    ROOT_URL=http://gogs.apps.dshirley1ipi.vmware.tamlab.rdu2.redhat.com/
     SSH_DOMAIN=gogs.apps.dshirley1ipi.vmware.tamlab.rdu2.redhat.com
 
     [security]
